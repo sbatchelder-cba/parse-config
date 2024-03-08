@@ -21,10 +21,16 @@ outputs:
   DOCKERFILE:
     description: 'asdf'
     default: ''
-  CONTEXT:
+  SQ-PROJECT-KEY:
     description: 'asdf'
     default: ''
-  CONTEXT:
+  ARTIFACT-DESTINATION:
+    description: 'asdf'
+    default: ''
+  KANIKO-BUILD-ARGS:
+    description: 'asdf'
+    default: ''
+  KANIKO-LABELS:
     description: 'asdf'
     default: ''
 
