@@ -43,7 +43,7 @@ runs:
         echo "Config validated, setting variables"
 
         yq '.cb-platform.component.[0].context' ${{ inputs.CONFIG_FILE }} | tr -d '\n' > "$CLOUDBEES_OUTPUTS/CONTEXT"
-        if ["$CLOUDBEES_OUTPUTS/CONTEXT" == "" ]; then echo ${{vars.CONTEXT }} | tr -d  > "$CLOUDBEES_OUTPUTS/CONTEXT" fi
+        if ["$CLOUDBEES_OUTPUTS/CONTEXT" == "" ]; then echo ${{vars.CONTEXT }} | tr -d  > "$CLOUDBEES_OUTPUTS/CONTEXT"; fi
 
         yq '.cb-platform.component.[0].mvn-compile-args' ${{ inputs.CONFIG_FILE }} | tr -d '\n' > "$CLOUDBEES_OUTPUTS/MVN-COMPILE-ARGS"
         if ["$CLOUDBEES_OUTPUTS/MVN-COMPILE-ARGS" == "" ]; then echo ${{vars.MVN-COMPILE-ARGS }} | tr -d  > "$CLOUDBEES_OUTPUTS/MVN-COMPILE-ARGS"; fi
