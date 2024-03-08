@@ -64,7 +64,6 @@ runs:
         then
           echo "${{ inputs.I-CONTEXT }}" | tr -d  > "$CLOUDBEES_OUTPUTS/CONTEXT"
         else
-        then
           yq '.cb-platform.component.[0].context' ${{ inputs.CONFIG_FILE }} | tr -d '\n' > "$CLOUDBEES_OUTPUTS/CONTEXT"
         fi
 
