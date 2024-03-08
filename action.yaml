@@ -5,7 +5,8 @@ description: 'Parse Config File'
 
 # These are only the properties that the DevOps team allows the devs to
 # override in their yaml file. ${{ vars.* }} cannot be read inside a custom
-# action, so they must be passed in as an input to the custom action
+# action, so they must be passed in as an input to the custom action. This
+# also means all the vars must be defined on the platform.
 inputs:
   CONFIG_FILE:
     description: 'asdf'
@@ -53,7 +54,9 @@ runs:
         apk add yq
 
         echo "Validating ${{ inputs.CONFIG_FILE }}"
-        python3 validate_config.py -f ${{ inputs.CONFIG_FILE }}
+        cat "${{ inputs.CONFIG_FILE }}"
+        echo "python3 /app/validate_config.py -f ${{ inputs.CONFIG_FILE }}"
+        echo "(TODO file needs to be built into the image for the CBA to work)"
 
         echo "Config validated, setting variables"
 
