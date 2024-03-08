@@ -10,19 +10,14 @@ description: 'Parse Config File'
 inputs:
   CONFIG_FILE:
     description: 'asdf'
-    default: ''
   I-CONTEXT:
     description: 'asdf'
-    default: ''
   I-MVN-COMPILE-ARGS:
     description: 'asdf'
-    default: ''
   I-MVN-TEST-ARGS:
     description: 'asdf'
-    default: ''
   I-DOCKERFILE:
     description: 'asdf'
-    default: ''
 
 outputs:
   CONTEXT:
@@ -63,28 +58,21 @@ runs:
         apk add yq
 
         echo "Validating ${{ inputs.CONFIG_FILE }}"
-        cat "${{ inputs.CONFIG_FILE }}"
         echo "python3 /app/validate_config.py -f ${{ inputs.CONFIG_FILE }}"
         echo "(TODO file needs to be built into the image for the CBA to work)"
 
         echo "Config validated, setting variables"
 
-        echo "DEBUG1 $(yq '.cb-platform.component.[0].context' ${{ inputs.CONFIG_FILE }} | tr -d '\n')"
-        echo "DEBUG2 ${{ inputs.I-CONTEXT }}"
-
-        if [ $(yq '.cb-platform.component.[0].context' ${{ inputs.CONFIG_FILE }} | tr -d '\n') == "" ]
+        if [ -z $(yq '.cb-platform.component.[0].context' ${{ inputs.CONFIG_FILE }} | tr -d '\n') ]
         then
-          echo DEBUG IF
           echo "${{ inputs.I-CONTEXT }}" | tr -d  > "$CLOUDBEES_OUTPUTS/CONTEXT"
         else
-          echo DEBUG ELSE
           yq '.cb-platform.component.[0].context' ${{ inputs.CONFIG_FILE }} | tr -d '\n' > "$CLOUDBEES_OUTPUTS/CONTEXT"
         fi
-        echo DEBUG "$CLOUDBEES_OUTPUTS/CONTEXT"
 
         if [ $(yq '.cb-platform.component.[0].mvn-compile-args' ${{ inputs.CONFIG_FILE }} | tr -d '\n') == "" ]
         then
-          echo "${{inputs.I-MVN-COMPILE-ARGS }}" | tr -d  > "$CLOUDBEES_OUTPUTS/MVN-COMPILE-ARGS"
+          echo "${{ inputs.I-MVN-COMPILE-ARGS }}" | tr -d  > "$CLOUDBEES_OUTPUTS/MVN-COMPILE-ARGS"
         else
           yq '.cb-platform.component.[0].mvn-compile-args' ${{ inputs.CONFIG_FILE }} | tr -d '\n' > "$CLOUDBEES_OUTPUTS/MVN-COMPILE-ARGS"
         fi
