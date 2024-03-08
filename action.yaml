@@ -63,7 +63,8 @@ runs:
 
         echo "Config validated, setting variables"
 
-        if [ -z "$(yq '.cb-platform.component.[0].context' ${{ inputs.CONFIG_FILE }} | tr -d '\n')"]
+        RENE=$(yq '.cb-platform.component.[0].context' ${{ inputs.CONFIG_FILE }} | tr -d '\n')
+        if [ -z "$RENE" ]
         then
           echo DEBUG IF
           echo "${{ inputs.I-CONTEXT }}" | tr -d  > "$CLOUDBEES_OUTPUTS/CONTEXT"
