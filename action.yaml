@@ -11,29 +11,20 @@ inputs:
 outputs:
   CONTEXT:
     description: 'asdf'
-    default: ''
   MVN-COMPILE-ARGS:
     description: 'asdf'
-    default: ''
   MVN-TEST-ARGS:
     description: 'asdf'
-    default: ''
   DOCKERFILE:
     description: 'asdf'
-    default: ''
   SQ-PROJECT-KEY:
     description: 'asdf'
-    default: ''
   ARTIFACT-DESTINATION:
     description: 'asdf'
-    default: ''
   KANIKO-BUILD-ARGS:
     description: 'asdf'
-    default: ''
   KANIKO-LABELS:
     description: 'asdf'
-    default: ''
-
 
 runs:
   using: composite
