@@ -66,6 +66,7 @@ runs:
         else
           yq '.cb-platform.component.[0].context' ${{ inputs.CONFIG_FILE }} | tr -d '\n' > "$CLOUDBEES_OUTPUTS/CONTEXT"
         fi
+        echo DEBUG "$CLOUDBEES_OUTPUTS/CONTEXT"
 
         if [ $(yq '.cb-platform.component.[0].mvn-compile-args' ${{ inputs.CONFIG_FILE }} | tr -d '\n') == "" ]
         then
