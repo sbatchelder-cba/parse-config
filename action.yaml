@@ -27,6 +27,7 @@ inputs:
 outputs:
   CONTEXT:
     description: 'asdf'
+    value: ${{ steps.parseconfigcba.outputs.CONTEXT }}"
   MVN-COMPILE-ARGS:
     description: 'asdf'
   MVN-TEST-ARGS:
@@ -46,6 +47,7 @@ runs:
   using: composite
   steps:
     - name: Parse Config
+      id: parseconfigcba
       kind: build
       uses: docker://python:3.12-alpine3.19
       shell: sh
