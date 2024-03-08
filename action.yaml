@@ -65,7 +65,7 @@ runs:
 
         RENE=$(yq '.cb-platform.component.[0].context' ${{ inputs.CONFIG_FILE }} | tr -d '\n')
         echo "DEBUG0: $RENE"
-        if [ "$RENE" == "" || "$RENE" == "null"]
+        if [ "$RENE" == "" ] || [ "$RENE" == "null"]
         then
           echo DEBUG IF
           echo -n "${{ inputs.I-CONTEXT }}" > "$CLOUDBEES_OUTPUTS/CONTEXT"
