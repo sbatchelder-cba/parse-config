@@ -64,6 +64,7 @@ runs:
         echo "Config validated, setting variables"
 
         RENE=$(yq '.cb-platform.component.[0].context' ${{ inputs.CONFIG_FILE }} | tr -d '\n')
+        echo "DEBUG0: $RENE"
         if [ -z "$RENE" ]
         then
           echo DEBUG IF
