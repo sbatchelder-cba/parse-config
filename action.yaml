@@ -3,8 +3,23 @@ kind: action
 name: 'parseconfig'
 description: 'Parse Config File'
 
+# These are only the properties that the DevOps team allows the devs to
+# override in their yaml file. ${{ vars.* }} cannot be read inside a custom
+# action, so they must be passed in as an input to the custom action
 inputs:
   CONFIG_FILE:
+    description: 'asdf'
+    default: ''
+  I-CONTEXT:
+    description: 'asdf'
+    default: ''
+  I-MVN-COMPILE-ARGS:
+    description: 'asdf'
+    default: ''
+  I-MVN-TEST-ARGS:
+    description: 'asdf'
+    default: ''
+  I-DOCKERFILE:
     description: 'asdf'
     default: ''
 
@@ -45,25 +60,25 @@ runs:
         yq '.cb-platform.component.[0].context' ${{ inputs.CONFIG_FILE }} | tr -d '\n' > "$CLOUDBEES_OUTPUTS/CONTEXT"
         if ["$CLOUDBEES_OUTPUTS/CONTEXT" == "" ]
         then
-          echo "${{vars.CONTEXT }}" | tr -d  > "$CLOUDBEES_OUTPUTS/CONTEXT"
+          echo "${{ inputs.I-CONTEXT }}" | tr -d  > "$CLOUDBEES_OUTPUTS/CONTEXT"
         fi
 
         yq '.cb-platform.component.[0].mvn-compile-args' ${{ inputs.CONFIG_FILE }} | tr -d '\n' > "$CLOUDBEES_OUTPUTS/MVN-COMPILE-ARGS"
         if ["$CLOUDBEES_OUTPUTS/MVN-COMPILE-ARGS" == "" ]
         then
-          echo "${{vars.MVN-COMPILE-ARGS }}" | tr -d  > "$CLOUDBEES_OUTPUTS/MVN-COMPILE-ARGS"
+          echo "${{inputs.I-MVN-COMPILE-ARGS }}" | tr -d  > "$CLOUDBEES_OUTPUTS/MVN-COMPILE-ARGS"
         fi
 
         yq '.cb-platform.component.[0].mvn-test-args' ${{ inputs.CONFIG_FILE }} | tr -d '\n' > "$CLOUDBEES_OUTPUTS/MVN-TEST-ARGS"
         if ["$CLOUDBEES_OUTPUTS/MVN-TEST-ARGS" == "" ]
         then
-          echo "${{vars.MVN-TEST-ARGS }}" | tr -d  > "$CLOUDBEES_OUTPUTS/MVN-TEST-ARGS"
+          echo "${{inputs.I-MVN-TEST-ARGS }}" | tr -d  > "$CLOUDBEES_OUTPUTS/MVN-TEST-ARGS"
         fi
 
         yq '.cb-platform.component.[0].dockerfile' ${{ inputs.CONFIG_FILE }} | tr -d '\n' > "$CLOUDBEES_OUTPUTS/DOCKERFILE"
         if ["$CLOUDBEES_OUTPUTS/DOCKERFILE" == "" ]
         then
-          echo "${{vars.CONTEXT }}" | tr -d  > "$CLOUDBEES_OUTPUTS/DOCKERFILE"
+          echo "${{inputs.I-DOCKERFILE }}" | tr -d  > "$CLOUDBEES_OUTPUTS/DOCKERFILE"
         fi
 
         yq '.cb-platform.component.[0].sq-project-key' ${{ inputs.CONFIG_FILE }} | tr -d '\n' > "$CLOUDBEES_OUTPUTS/SQ-PROJECT-KEY"
