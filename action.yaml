@@ -65,10 +65,10 @@ runs:
 
         if [ $(yq '.cb-platform.component.[0].context' ${{ inputs.CONFIG_FILE }} | tr -d '\n') = "" ]
         then
-          DEBUG IF
+          echo DEBUG IF
           echo "${{ inputs.I-CONTEXT }}" | tr -d  > "$CLOUDBEES_OUTPUTS/CONTEXT"
         else
-          DEBUG ELSE
+          echo DEBUG ELSE
           yq '.cb-platform.component.[0].context' ${{ inputs.CONFIG_FILE }} | tr -d '\n' > "$CLOUDBEES_OUTPUTS/CONTEXT"
         fi
 
