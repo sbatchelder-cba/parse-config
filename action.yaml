@@ -37,8 +37,8 @@ runs:
         pwd ; ls -la
         apk add yq
 
-        echo "Validating ${{ inputs.CONFIG_YAML }}"
-        python3 validate_config.py -f ${{ inputs.CONFIG_YAML }}
+        echo "Validating ${{ inputs.CONFIG_FILE }}"
+        python3 validate_config.py -f ${{ inputs.CONFIG_FILE }}
 
         echo "Config validated, setting variables"
 
