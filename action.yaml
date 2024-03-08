@@ -27,7 +27,7 @@ inputs:
 outputs:
   CONTEXT:
     description: 'asdf'
-    value: ${{ steps.parseconfigcba.outputs.CONTEXT }}"
+    value: ${{ steps.parseconfigcba.outputs.CONTEXT }}
   MVN-COMPILE-ARGS:
     description: 'asdf'
   MVN-TEST-ARGS:
