@@ -67,22 +67,25 @@ runs:
           yq '.cb-platform.component.[0].context' ${{ inputs.CONFIG_FILE }} | tr -d '\n' > "$CLOUDBEES_OUTPUTS/CONTEXT"
         fi
 
-        yq '.cb-platform.component.[0].mvn-compile-args' ${{ inputs.CONFIG_FILE }} | tr -d '\n' > "$CLOUDBEES_OUTPUTS/MVN-COMPILE-ARGS"
-        if ["$CLOUDBEES_OUTPUTS/MVN-COMPILE-ARGS" == "" ]
+        if [ $(yq '.cb-platform.component.[0].mvn-compile-args' ${{ inputs.CONFIG_FILE }} | tr -d '\n') == "" ]
         then
           echo "${{inputs.I-MVN-COMPILE-ARGS }}" | tr -d  > "$CLOUDBEES_OUTPUTS/MVN-COMPILE-ARGS"
+        else
+          yq '.cb-platform.component.[0].mvn-compile-args' ${{ inputs.CONFIG_FILE }} | tr -d '\n' > "$CLOUDBEES_OUTPUTS/MVN-COMPILE-ARGS"
         fi
 
-        yq '.cb-platform.component.[0].mvn-test-args' ${{ inputs.CONFIG_FILE }} | tr -d '\n' > "$CLOUDBEES_OUTPUTS/MVN-TEST-ARGS"
-        if ["$CLOUDBEES_OUTPUTS/MVN-TEST-ARGS" == "" ]
+        if [ $(yq '.cb-platform.component.[0].mvn-test-args' ${{ inputs.CONFIG_FILE }} | tr -d '\n') == "" ]
         then
           echo "${{inputs.I-MVN-TEST-ARGS }}" | tr -d  > "$CLOUDBEES_OUTPUTS/MVN-TEST-ARGS"
+        else
+          yq '.cb-platform.component.[0].mvn-test-args' ${{ inputs.CONFIG_FILE }} | tr -d '\n' > "$CLOUDBEES_OUTPUTS/MVN-TEST-ARGS"
         fi
 
-        yq '.cb-platform.component.[0].dockerfile' ${{ inputs.CONFIG_FILE }} | tr -d '\n' > "$CLOUDBEES_OUTPUTS/DOCKERFILE"
-        if ["$CLOUDBEES_OUTPUTS/DOCKERFILE" == "" ]
+        if [ $(yq '.cb-platform.component.[0].dockerfile' ${{ inputs.CONFIG_FILE }} | tr -d '\n') == "" ]
         then
           echo "${{inputs.I-DOCKERFILE }}" | tr -d  > "$CLOUDBEES_OUTPUTS/DOCKERFILE"
+        else
+          yq '.cb-platform.component.[0].dockerfile' ${{ inputs.CONFIG_FILE }} | tr -d '\n' > "$CLOUDBEES_OUTPUTS/DOCKERFILE"
         fi
 
         yq '.cb-platform.component.[0].sq-project-key' ${{ inputs.CONFIG_FILE }} | tr -d '\n' > "$CLOUDBEES_OUTPUTS/SQ-PROJECT-KEY"
