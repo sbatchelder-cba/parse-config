@@ -30,18 +30,25 @@ outputs:
     value: ${{ steps.parseconfigcba.outputs.CONTEXT }}
   MVN-COMPILE-ARGS:
     description: 'asdf'
+    value: ${{ steps.parseconfigcba.outputs.MVN-COMPILE-ARGS }}
   MVN-TEST-ARGS:
     description: 'asdf'
+    value: ${{ steps.parseconfigcba.outputs.MVN-TEST-ARGS }}
   DOCKERFILE:
     description: 'asdf'
+    value: ${{ steps.parseconfigcba.outputs.DOCKERFILE }}
   SQ-PROJECT-KEY:
     description: 'asdf'
+    value: ${{ steps.parseconfigcba.outputs.SQ-PROJECT-KEY }}
   ARTIFACT-DESTINATION:
     description: 'asdf'
+    value: ${{ steps.parseconfigcba.outputs.ARTIFACT-DESTINATION }}
   KANIKO-BUILD-ARGS:
     description: 'asdf'
+    value: ${{ steps.parseconfigcba.outputs.KANIKO-BUILD-ARGS }}
   KANIKO-LABELS:
     description: 'asdf'
+    value: ${{ steps.parseconfigcba.outputs.KANIKO-LABELS }}
 
 runs:
   using: composite
