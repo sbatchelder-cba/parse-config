@@ -60,10 +60,15 @@ runs:
 
         echo "Config validated, setting variables"
 
+        echo "DEBUG1 $(yq '.cb-platform.component.[0].context' ${{ inputs.CONFIG_FILE }} | tr -d '\n')"
+        echo "DEBUG2 ${{ inputs.I-CONTEXT }}"
+
         if [ $(yq '.cb-platform.component.[0].context' ${{ inputs.CONFIG_FILE }} | tr -d '\n') == "" ]
         then
+          echo DEBUG IF
           echo "${{ inputs.I-CONTEXT }}" | tr -d  > "$CLOUDBEES_OUTPUTS/CONTEXT"
         else
+          echo DEBUG ELSE
           yq '.cb-platform.component.[0].context' ${{ inputs.CONFIG_FILE }} | tr -d '\n' > "$CLOUDBEES_OUTPUTS/CONTEXT"
         fi
         echo DEBUG "$CLOUDBEES_OUTPUTS/CONTEXT"
