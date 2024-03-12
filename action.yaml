@@ -73,21 +73,21 @@ runs:
 
         if [ "$(yq '.cb-platform.component.[0].mvn-compile-args' ${{ inputs.CONFIG_FILE }} | tr -d '\n')" == "" ] || [ "$(yq '.cb-platform.component.[0].mvn-compile-args' ${{ inputs.CONFIG_FILE }} | tr -d '\n')" == "null" ]
         then
-          echo "${{ inputs.I-MVN-COMPILE-ARGS }}" | tr -d  > "$CLOUDBEES_OUTPUTS/MVN-COMPILE-ARGS"
+          echo -n "${{ inputs.I-MVN-COMPILE-ARGS }}" > "$CLOUDBEES_OUTPUTS/MVN-COMPILE-ARGS"
         else
           yq '.cb-platform.component.[0].mvn-compile-args' ${{ inputs.CONFIG_FILE }} | tr -d '\n' > "$CLOUDBEES_OUTPUTS/MVN-COMPILE-ARGS"
         fi
 
         if [ "$(yq '.cb-platform.component.[0].mvn-test-args' ${{ inputs.CONFIG_FILE }} | tr -d '\n')" == "" ] || [ "$(yq '.cb-platform.component.[0].mvn-test-args' ${{ inputs.CONFIG_FILE }} | tr -d '\n')" == "null" ]
         then
-          echo "${{inputs.I-MVN-TEST-ARGS }}" | tr -d  > "$CLOUDBEES_OUTPUTS/MVN-TEST-ARGS"
+          echo -n "${{inputs.I-MVN-TEST-ARGS }}" > "$CLOUDBEES_OUTPUTS/MVN-TEST-ARGS"
         else
           yq '.cb-platform.component.[0].mvn-test-args' ${{ inputs.CONFIG_FILE }} | tr -d '\n' > "$CLOUDBEES_OUTPUTS/MVN-TEST-ARGS"
         fi
 
         if [ "$(yq '.cb-platform.component.[0].dockerfile' ${{ inputs.CONFIG_FILE }} | tr -d '\n')" == "" ] || [ "$(yq '.cb-platform.component.[0].dockerfile' ${{ inputs.CONFIG_FILE }} | tr -d '\n')" == "null" ]
         then
-          echo "${{inputs.I-DOCKERFILE }}" | tr -d  > "$CLOUDBEES_OUTPUTS/DOCKERFILE"
+          echo -n "${{inputs.I-DOCKERFILE }}" > "$CLOUDBEES_OUTPUTS/DOCKERFILE"
         else
           yq '.cb-platform.component.[0].dockerfile' ${{ inputs.CONFIG_FILE }} | tr -d '\n' > "$CLOUDBEES_OUTPUTS/DOCKERFILE"
         fi
