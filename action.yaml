@@ -56,7 +56,7 @@ runs:
     - name: Parse Config
       id: parseconfigcba
       kind: build
-      uses: docker://sbatchelder/platform-agent:parse-configv2
+      uses: docker://sbatchelder/platform-agent:parse-configv3
       shell: sh
       run: |
         python3 /tools/parse_config.py -f ${{ inputs.CONFIG_FILE }}
