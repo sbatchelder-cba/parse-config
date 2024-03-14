@@ -52,6 +52,12 @@ outputs:
   # KANIKO-LABELS:
   #   description: 'asdf'
   #   value: ${{ steps.parseconfigcba.outputs.KANIKO-LABELS }}
+  NAME:
+    description: 'asdf'
+    value: ${{ steps.parseconfigcba.outputs.name }}
+  TECH:
+    description: 'asdf'
+    value: ${{ steps.parseconfigcba.outputs.tech }}
   CONTEXT:
     description: 'asdf'
     value: ${{ steps.parseconfigcba.outputs.context }}
