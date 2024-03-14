@@ -34,6 +34,9 @@ outputs:
   PY-TEST-ARGS:
     description: 'asdf'
     value: ${{ steps.parseconfigcba.outputs.PY-TEST-ARGS }}
+  PY-REQUIREMENTS:
+    description: 'asdf'
+    value: ${{ steps.parseconfigcba.outputs.PY-REQUIREMENTS }}
   DOCKERFILE:
     description: 'asdf'
     value: ${{ steps.parseconfigcba.outputs.DOCKERFILE }}
