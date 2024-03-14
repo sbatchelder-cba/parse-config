@@ -1,0 +1,98 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: action
+name: 'parseconfig'
+description: 'Parse Config File'
+
+# These are only the properties that the DevOps team allows the devs to
+# override in their yaml file. ${{ vars.* }} cannot be read inside a custom
+# action, so they must be passed in as an input to the custom action. This
+# also means all the vars must be defined on the platform.
+inputs:
+  CONFIG_FILE:
+    description: 'asdf'
+  I-CONTEXT:
+    description: 'asdf'
+  I-MVN-COMPILE-ARGS:
+    description: 'asdf'
+  I-MVN-TEST-ARGS:
+    description: 'asdf'
+  I-DOCKERFILE:
+    description: 'asdf'
+
+outputs:
+  CONTEXT:
+    description: 'asdf'
+    value: ${{ steps.parseconfigcba.outputs.CONTEXT }}
+  MVN-COMPILE-ARGS:
+    description: 'asdf'
+    value: ${{ steps.parseconfigcba.outputs.MVN-COMPILE-ARGS }}
+  MVN-TEST-ARGS:
+    description: 'asdf'
+    value: ${{ steps.parseconfigcba.outputs.MVN-TEST-ARGS }}
+  DOCKERFILE:
+    description: 'asdf'
+    value: ${{ steps.parseconfigcba.outputs.DOCKERFILE }}
+  SQ-PROJECT-KEY:
+    description: 'asdf'
+    value: ${{ steps.parseconfigcba.outputs.SQ-PROJECT-KEY }}
+  ARTIFACT-DESTINATION:
+    description: 'asdf'
+    value: ${{ steps.parseconfigcba.outputs.ARTIFACT-DESTINATION }}
+  KANIKO-BUILD-ARGS:
+    description: 'asdf'
+    value: ${{ steps.parseconfigcba.outputs.KANIKO-BUILD-ARGS }}
+  KANIKO-LABELS:
+    description: 'asdf'
+    value: ${{ steps.parseconfigcba.outputs.KANIKO-LABELS }}
+
+runs:
+  using: composite
+  steps:
+    - name: Parse Config
+      id: parseconfigcba
+      kind: build
+      uses: docker://python:3.12-alpine3.19
+      shell: sh
+      run: |
+        pwd ; ls -la
+        apk add yq
+
+        echo "Validating ${{ inputs.CONFIG_FILE }}"
+        echo "python3 /app/validate_config.py -f ${{ inputs.CONFIG_FILE }}"
+        echo "(TODO file needs to be built into the image for the CBA to work)"
+
+        echo "Config validated, setting variables"
+
+        echo "(TODO script it...)"
+        if [ "$(yq '.cb-platform.component.[0].context' ${{ inputs.CONFIG_FILE }} | tr -d '\n')" == "" ] || [ "$(yq '.cb-platform.component.[0].context' ${{ inputs.CONFIG_FILE }} | tr -d '\n')" == "null" ]
+        then
+          echo -n "${{ inputs.I-CONTEXT }}" > "$CLOUDBEES_OUTPUTS/CONTEXT"
+        else
+          yq '.cb-platform.component.[0].context' ${{ inputs.CONFIG_FILE }} | tr -d '\n' > "$CLOUDBEES_OUTPUTS/CONTEXT"
+        fi
+
+        if [ "$(yq '.cb-platform.component.[0].mvn-compile-args' ${{ inputs.CONFIG_FILE }} | tr -d '\n')" == "" ] || [ "$(yq '.cb-platform.component.[0].mvn-compile-args' ${{ inputs.CONFIG_FILE }} | tr -d '\n')" == "null" ]
+        then
+          echo -n "${{ inputs.I-MVN-COMPILE-ARGS }}" > "$CLOUDBEES_OUTPUTS/MVN-COMPILE-ARGS"
+        else
+          yq '.cb-platform.component.[0].mvn-compile-args' ${{ inputs.CONFIG_FILE }} | tr -d '\n' > "$CLOUDBEES_OUTPUTS/MVN-COMPILE-ARGS"
+        fi
+
+        if [ "$(yq '.cb-platform.component.[0].mvn-test-args' ${{ inputs.CONFIG_FILE }} | tr -d '\n')" == "" ] || [ "$(yq '.cb-platform.component.[0].mvn-test-args' ${{ inputs.CONFIG_FILE }} | tr -d '\n')" == "null" ]
+        then
+          echo -n "${{inputs.I-MVN-TEST-ARGS }}" > "$CLOUDBEES_OUTPUTS/MVN-TEST-ARGS"
+        else
+          yq '.cb-platform.component.[0].mvn-test-args' ${{ inputs.CONFIG_FILE }} | tr -d '\n' > "$CLOUDBEES_OUTPUTS/MVN-TEST-ARGS"
+        fi
+
+        if [ "$(yq '.cb-platform.component.[0].dockerfile' ${{ inputs.CONFIG_FILE }} | tr -d '\n')" == "" ] || [ "$(yq '.cb-platform.component.[0].dockerfile' ${{ inputs.CONFIG_FILE }} | tr -d '\n')" == "null" ]
+        then
+          echo -n "${{inputs.I-DOCKERFILE }}" > "$CLOUDBEES_OUTPUTS/DOCKERFILE"
+        else
+          yq '.cb-platform.component.[0].dockerfile' ${{ inputs.CONFIG_FILE }} | tr -d '\n' > "$CLOUDBEES_OUTPUTS/DOCKERFILE"
+        fi
+
+        yq '.cb-platform.component.[0].sq-project-key' ${{ inputs.CONFIG_FILE }} | tr -d '\n' > "$CLOUDBEES_OUTPUTS/SQ-PROJECT-KEY"
+        yq '.cb-platform.component.[0].artifact-destination' ${{ inputs.CONFIG_FILE }} | tr -d '\n' > "$CLOUDBEES_OUTPUTS/ARTIFACT-DESTINATION"
+        yq '.cb-platform.component.[0].kaniko-build-args' ${{ inputs.CONFIG_FILE }} | tr -d '\n' > "$CLOUDBEES_OUTPUTS/KANIKO-BUILD-ARGS"
+        yq '.cb-platform.component.[0].kaniko-labels' ${{ inputs.CONFIG_FILE }} | tr -d '\n' > "$CLOUDBEES_OUTPUTS/KANIKO-LABELS"
