@@ -22,36 +22,66 @@ inputs:
     description: 'asdf'
 
 outputs:
+  # CONTEXT:
+  #   description: 'asdf'
+  #   value: ${{ steps.parseconfigcba.outputs.CONTEXT }}
+  # MVN-COMPILE-ARGS:
+  #   description: 'asdf'
+  #   value: ${{ steps.parseconfigcba.outputs.MVN-COMPILE-ARGS }}
+  # MVN-TEST-ARGS:
+  #   description: 'asdf'
+  #   value: ${{ steps.parseconfigcba.outputs.MVN-TEST-ARGS }}
+  # PY-TEST-ARGS:
+  #   description: 'asdf'
+  #   value: ${{ steps.parseconfigcba.outputs.PY-TEST-ARGS }}
+  # PY-REQUIREMENTS:
+  #   description: 'asdf'
+  #   value: ${{ steps.parseconfigcba.outputs.PY-REQUIREMENTS }}
+  # DOCKERFILE:
+  #   description: 'asdf'
+  #   value: ${{ steps.parseconfigcba.outputs.DOCKERFILE }}
+  # SQ-PROJECT-KEY:
+  #   description: 'asdf'
+  #   value: ${{ steps.parseconfigcba.outputs.SQ-PROJECT-KEY }}
+  # ARTIFACT-DESTINATION:
+  #   description: 'asdf'
+  #   value: ${{ steps.parseconfigcba.outputs.ARTIFACT-DESTINATION }}
+  # KANIKO-BUILD-ARGS:
+  #   description: 'asdf'
+  #   value: ${{ steps.parseconfigcba.outputs.KANIKO-BUILD-ARGS }}
+  # KANIKO-LABELS:
+  #   description: 'asdf'
+  #   value: ${{ steps.parseconfigcba.outputs.KANIKO-LABELS }}
   CONTEXT:
     description: 'asdf'
-    value: ${{ steps.parseconfigcba.outputs.CONTEXT }}
+    value: ${{ steps.parseconfigcba.outputs.context }}
   MVN-COMPILE-ARGS:
     description: 'asdf'
-    value: ${{ steps.parseconfigcba.outputs.MVN-COMPILE-ARGS }}
+    value: ${{ steps.parseconfigcba.outputs.mvn-compile-args }}
   MVN-TEST-ARGS:
     description: 'asdf'
-    value: ${{ steps.parseconfigcba.outputs.MVN-TEST-ARGS }}
+    value: ${{ steps.parseconfigcba.outputs.mvn-test-args }}
   PY-TEST-ARGS:
     description: 'asdf'
-    value: ${{ steps.parseconfigcba.outputs.PY-TEST-ARGS }}
+    value: ${{ steps.parseconfigcba.outputs.py-test-args }}
   PY-REQUIREMENTS:
     description: 'asdf'
-    value: ${{ steps.parseconfigcba.outputs.PY-REQUIREMENTS }}
+    value: ${{ steps.parseconfigcba.outputs.py-requirements }}
   DOCKERFILE:
     description: 'asdf'
-    value: ${{ steps.parseconfigcba.outputs.DOCKERFILE }}
+    value: ${{ steps.parseconfigcba.outputs.dockerfile }}
   SQ-PROJECT-KEY:
     description: 'asdf'
-    value: ${{ steps.parseconfigcba.outputs.SQ-PROJECT-KEY }}
+    value: ${{ steps.parseconfigcba.outputs.sq-project-key }}
   ARTIFACT-DESTINATION:
     description: 'asdf'
-    value: ${{ steps.parseconfigcba.outputs.ARTIFACT-DESTINATION }}
+    value: ${{ steps.parseconfigcba.outputs.artifact-destination }}
   KANIKO-BUILD-ARGS:
     description: 'asdf'
-    value: ${{ steps.parseconfigcba.outputs.KANIKO-BUILD-ARGS }}
+    value: ${{ steps.parseconfigcba.outputs.kaniko-build-args }}
   KANIKO-LABELS:
     description: 'asdf'
-    value: ${{ steps.parseconfigcba.outputs.KANIKO-LABELS }}
+    value: ${{ steps.parseconfigcba.outputs.kaniko-labels }}
 
 runs:
   using: composite
