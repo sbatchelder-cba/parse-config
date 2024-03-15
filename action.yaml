@@ -61,12 +61,12 @@ outputs:
   CONTEXT:
     description: 'asdf'
     value: ${{ steps.parseconfigcba.outputs.context }}
-  # MVN-COMPILE-ARGS:
-  #   description: 'asdf'
-  #   value: ${{ steps.parseconfigcba.outputs.mvn-compile-args }}
-  # MVN-TEST-ARGS:
-  #   description: 'asdf'
-  #   value: ${{ steps.parseconfigcba.outputs.mvn-test-args }}
+  MVN-COMPILE-ARGS:
+    description: 'asdf'
+    value: ${{ steps.parseconfigcba.outputs.mvn-compile-args }}
+  MVN-TEST-ARGS:
+    description: 'asdf'
+    value: ${{ steps.parseconfigcba.outputs.mvn-test-args }}
   PY-TEST-ARGS:
     description: 'asdf'
     value: ${{ steps.parseconfigcba.outputs.py-test-args }}
