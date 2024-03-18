@@ -21,6 +21,9 @@ inputs:
   I-DOCKERFILE:
     description: 'asdf'
 
+# An output for every parameter MUST be set to something. For example if the
+# tech used in Maven, then the Python outputs must still be set to null. If
+# this is not done, the action will fail silently.
 outputs:
   NAME:
     description: 'asdf'
