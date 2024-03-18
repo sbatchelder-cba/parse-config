@@ -52,6 +52,12 @@ outputs:
   SQ-PROJECT-KEY:
     description: 'asdf'
     value: ${{ steps.parseconfigcba.outputs.sq-project-key }}
+  COVERITY-ID:
+    description: 'asdf'
+    value: ${{ steps.parseconfigcba.outputs.coverity-id }}
+  BLACKDUCK-ID:
+    description: 'asdf'
+    value: ${{ steps.parseconfigcba.outputs.blackduck-id }}
   ARTIFACT-DESTINATION:
     description: 'asdf'
     value: ${{ steps.parseconfigcba.outputs.artifact-destination }}
@@ -68,7 +74,7 @@ runs:
     - name: Parse Config
       id: parseconfigcba
       kind: build
-      uses: docker://sbatchelder/platform-agent:parse-configv4
+      uses: docker://sbatchelder/platform-agent:parse-configv5
       shell: sh
       run: |
         python3 /tools/parse_config.py -f ${{ inputs.CONFIG_FILE }}

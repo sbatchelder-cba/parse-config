@@ -20,7 +20,7 @@ def init_argparse() -> argparse.ArgumentParser:
     return parser
 
 devops_keys = ["context", "mvn-compile-args", "mvn-test-args", "dockerfile", "py-test-args" ]
-output_keys = ["name", "tech",  "context", "mvn-compile-args", "mvn-test-args", "py-test-args", "py-requirements", "dockerfile", "sq-project-key", "artifact-destination", "kaniko-build-args", "kaniko-labels" ]
+output_keys = ["name", "tech",  "context", "mvn-compile-args", "mvn-test-args", "py-test-args", "py-requirements", "dockerfile", "sq-project-key", "coverity-id", "blackduck-id", "artifact-destination", "kaniko-build-args", "kaniko-labels" ]
 
 def set_config(key, value):
     """set_config"""
